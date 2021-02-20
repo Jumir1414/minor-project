@@ -1,7 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:minorproject/states/currentUser.dart';
 import 'package:minorproject/widgets/OurContainer.dart';
+import 'package:provider/provider.dart';
 
-class OurSignUpForm extends StatelessWidget {
+class OurSignUpForm extends StatefulWidget {
+  @override
+  _OurSignUpFormState createState() => _OurSignUpFormState();
+}
+
+class _OurSignUpFormState extends State<OurSignUpForm> {
+  TextEditingController _fullNameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _confirmPasswordController = TextEditingController();
+
+  void _signUpUser(String email, String password, BuildContext context) async {
+    CurrentUser _currentUser = Provider.of<CurrentUser>(context, listen: false);
+    try {
+      if (await _currentUser.signUpUser(email, password)) {
+        Navigator.pop(context);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return OurContainer(
@@ -19,6 +42,7 @@ class OurSignUpForm extends StatelessWidget {
             ),
           ),
           TextFormField(
+            controller: _fullNameController,
             decoration: InputDecoration(
                 prefixIcon: Icon(Icons.person_outline), hintText: "Full Name"),
           ),
@@ -26,6 +50,7 @@ class OurSignUpForm extends StatelessWidget {
             height: 20.0,
           ),
           TextFormField(
+            controller: _emailController,
             decoration: InputDecoration(
                 prefixIcon: Icon(Icons.alternate_email), hintText: "email"),
           ),
@@ -33,6 +58,7 @@ class OurSignUpForm extends StatelessWidget {
             height: 20.0,
           ),
           TextFormField(
+            controller: _passwordController,
             decoration: InputDecoration(
                 prefixIcon: Icon(Icons.lock_outline), hintText: "password"),
             obscureText: true,
@@ -41,6 +67,7 @@ class OurSignUpForm extends StatelessWidget {
             height: 20.0,
           ),
           TextFormField(
+            controller: _confirmPasswordController,
             decoration: InputDecoration(
                 prefixIcon: Icon(Icons.lock_outline),
                 hintText: "confirm Password"),
@@ -60,7 +87,19 @@ class OurSignUpForm extends StatelessWidget {
                     fontSize: 20.0),
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              if (_passwordController.text == _confirmPasswordController.text) {
+                _signUpUser(
+                    _emailController.text, _passwordController.text, context);
+              } else {
+                Scaffold.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text("password does not match"),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              }
+            },
           ),
         ],
       ),
