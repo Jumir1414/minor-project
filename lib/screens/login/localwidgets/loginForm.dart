@@ -16,7 +16,9 @@ class _OurLoginFormState extends State<OurLoginForm> {
   void _loginUser(String email, String password, BuildContext context) async {
     CurrentUser _currentUser = Provider.of<CurrentUser>(context, listen: false);
     try {
-      if (await _currentUser.loginUser(email, password)) {
+      String _returnString =
+          await _currentUser.loginUserWithEmail(email, password);
+      if (_returnString == "success") {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => HomeScreen(),
@@ -25,7 +27,7 @@ class _OurLoginFormState extends State<OurLoginForm> {
       } else {
         Scaffold.of(context).showSnackBar(
           SnackBar(
-            content: Text("incorrect Login Info!!"),
+            content: Text(_returnString),
             duration: Duration(seconds: 2),
           ),
         );
