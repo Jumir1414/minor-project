@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minorproject/screens/login/login.dart';
+import 'package:minorproject/screens/root/root.dart';
 import 'package:minorproject/states/currentUser.dart';
 import 'package:minorproject/utils/ourtheme.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: OurTheme().buildTheme(),
-        home: OurLogin(),
+        home: OurRoot(),
       ),
     );
   }
