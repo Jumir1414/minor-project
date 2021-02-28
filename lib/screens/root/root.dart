@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minorproject/screens/home/home.dart';
+import 'package:minorproject/screens/Drawer/Drawer_Screen.dart';
 import 'package:minorproject/screens/login/login.dart';
 import 'package:minorproject/states/currentUser.dart';
 import 'package:provider/provider.dart';
@@ -40,7 +40,7 @@ class _OurRootState extends State<OurRoot> {
         retVal = OurLogin();
         break;
       case AuthStatus.loggedIn:
-        retVal = HomeScreen();
+        retVal = DrawerScreen();
 
         break;
       default:

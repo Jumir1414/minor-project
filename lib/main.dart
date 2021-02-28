@@ -4,8 +4,10 @@ import 'package:minorproject/states/currentUser.dart';
 import 'package:minorproject/utils/ourtheme.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:minorproject/screens/Component/Registerclasses.dart';
 
 void main() async {
+  ClassBuilder.registerClasses();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
