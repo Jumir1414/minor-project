@@ -26,15 +26,15 @@ class _DrawerScreenState extends State<DrawerScreen> {
       initialPage: ClassBuilder.fromString('HomeScreen'),
       items: [
         KFDrawerItem.initWithPage(
-          text:
-              Text('Buy', style: TextStyle(color: Colors.white, fontSize: 18)),
+          text: Text('List Of Books For Sales',
+              style: TextStyle(color: Colors.white, fontSize: 18)),
           icon: Icon(Icons.book, color: Colors.white),
           page: BuyScreen(),
         ),
         KFDrawerItem.initWithPage(
-          text:
-              Text('Sell', style: TextStyle(color: Colors.white, fontSize: 18)),
-          icon: Icon(Icons.done_all, color: Colors.white),
+          text: Text('Add Books For Sales',
+              style: TextStyle(color: Colors.white, fontSize: 18)),
+          icon: Icon(Icons.add_box_outlined, color: Colors.white),
           page: SellScreen(),
         ),
         KFDrawerItem.initWithPage(

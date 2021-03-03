@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: widget.onMenuPressed,
             ),
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).canvasColor,
           title: Text('BUY SELL BOOKS'),
           centerTitle: true,
         ),
